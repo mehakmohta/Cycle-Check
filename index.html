@@ -1,179 +1,229 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Symptom Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+<html>
+    <head><title>Cycle Check</title>
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <centre><h1>Cycle Check</h1></centre>
 
-  <!-- Left Navigation -->
-  <nav class="sidebar-nav">
-    <p class="nav-label">Navigation</p>
-    <ul>
-      <li><a href="#" class="active">Symptoms</a></li>
-      <li><a href="#">Calendar</a></li>
-      <li><a href="#">Appointment Prep</a></li>
-    </ul>
-    <div class="nav-flower">✿</div>
-  </nav>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js" 
+        integrity="sha512-+EeCylkt9WHJk5tGJxYdecHOcXFRME7qnbsfeMsdQL6NUPYm2+uGFmyleEqsmVoap/f3dN/sc3BX9t9kHXkHHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
 
-  <!-- Page wrapper -->
-  <div class="page">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.debug.js"></script>
+        
+        <form id = "cycleForm">
 
-    <!-- Top Bar -->
-    <header class="top-bar">
-      <div class="welcome-box">
-        <h1>Welcome, <em>Name</em></h1>
-      </div>
-      <div class="logo-box">
-        <span class="logo-icon">🌸</span>
-        <span class="logo-text">CycleLog</span>
-      </div>
-    </header>
 
-    <!-- Main + Right Sidebar -->
-    <div class="body-row">
+    <!-- pain section -->
+    <fieldset>
+        <legend>Pain & Physical Symptoms</legend>
 
-      <!-- Main Content Panel -->
-      <main class="content-panel">
+        <h4>How much did the pain affect you?</h4>
 
-        <!-- Pain & Body Map -->
-        <section class="section pain-section">
-          <div class="pain-left">
-            <h2 class="section-title">How much pain were you in?</h2>
-            <div class="radio-group">
-              <label><input type="radio" name="pain" value="none"> No pain</label>
-              <label><input type="radio" name="pain" value="mild"> Mild discomfort</label>
-              <label><input type="radio" name="pain" value="moderate"> Moderate pain</label>
-              <label><input type="radio" name="pain" value="severe"> Debilitating (could not walk)</label>
-            </div>
+        <input type="radio" id="pain1" name="pain_severity" value="none">
+        <label for="pain1">No pain or discomfort</label><br>
 
-            <h3 class="sub-title">What kind of pain was it?</h3>
-            <div class="tag-group">
-              <button class="tag">Radiating</button>
-              <button class="tag">Sharp</button>
-              <button class="tag">Dull</button>
-            </div>
+        <input type="radio" id="pain2" name="pain_severity" value="mild">
+        <label for="pain2">Mild discomfort but did not affect daily activities</label><br>
 
-            <h3 class="sub-title">When?</h3>
-            <div class="tag-group">
-              <button class="tag">During period</button>
-              <button class="tag">Before period</button>
-              <button class="tag">After period</button>
-              <button class="tag">Other time</button>
-            </div>
-          </div>
+        <input type="radio" id="pain3" name="pain_severity" value="moderate">
+        <label for="pain3">Needed rest or pain relief to continue daily activities</label><br>
 
-          <div class="pain-right">
-            <h2 class="section-title">Where was the pain? <span class="hint">(click)</span></h2>
-            <div class="body-map">
-              <svg viewBox="0 0 80 160" xmlns="http://www.w3.org/2000/svg" class="body-svg">
-                <!-- Head -->
-                <ellipse cx="40" cy="18" rx="12" ry="14" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
-                <!-- Torso -->
-                <rect x="24" y="33" width="32" height="48" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
-                <!-- Pelvis highlight -->
-                <rect x="24" y="68" width="32" height="13" rx="4" fill="#e8709a" opacity="0.4"/>
-                <!-- Left arm -->
-                <rect x="10" y="34" width="12" height="38" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
-                <!-- Right arm -->
-                <rect x="58" y="34" width="12" height="38" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
-                <!-- Left leg -->
-                <rect x="24" y="83" width="14" height="60" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
-                <!-- Right leg -->
-                <rect x="42" y="83" width="14" height="60" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
-              </svg>
-              <div class="body-map-options">
-                <label><input type="checkbox" name="loc" value="back"> Back</label>
-                <label><input type="checkbox" name="loc" value="legs"> Legs</label>
-                <label><input type="checkbox" name="loc" value="pelvis" checked> Lower pelvis</label>
-                <label class="specify-row"><input type="checkbox" name="loc" value="other"> Elsewhere / specify <input type="text" class="inline-input" placeholder="…"></label>
-              </div>
-            </div>
-          </div>
+        <input type="radio" id="pain4" name="pain_severity" value="severe">
+        <label for="pain4">Missed part of school or activities because of pain</label><br>
 
-          <!-- How do you feel -->
-          <div class="feel-box">
-            <h2 class="section-title small">How do you feel?</h2>
-            <div class="emoji-grid">
-              <button class="emoji-btn active" title="Great">😊</button>
-              <button class="emoji-btn" title="Okay">😐</button>
-              <button class="emoji-btn" title="Tired">😔</button>
-              <button class="emoji-btn" title="Anxious">😟</button>
-              <button class="emoji-btn" title="Nauseous">🤢</button>
-              <button class="emoji-btn" title="Angry">😠</button>
-              <button class="emoji-btn" title="Sad">😢</button>
-              <button class="emoji-btn" title="Exhausted">😩</button>
-            </div>
-          </div>
-        </section>
+        <input type="radio" id="pain5" name="pain_severity" value="debilitating">
+        <label for="pain5">Unable to carry out normal activities (eg. walking) due to pain</label>
 
-        <!-- Medication + Alternative Treatment -->
-        <section class="section two-col-section">
+        <h4>What did the pain feel like?</h4>
 
-          <div class="medication-box">
-            <h2 class="section-title">Medication</h2>
-            <p class="question">Did you use any medication?</p>
-            <div class="yes-no">
-              <button class="yn-btn active">Yes</button>
-              <button class="yn-btn">No</button>
-            </div>
-            <input type="text" class="text-input" placeholder="Name of medication">
-            <input type="text" class="text-input" placeholder="Dosage details (optional)">
+        <input type="checkbox" id="cramping" name="pain_type" value="cramping">
+        <label for="cramping">Cramping</label><br>
 
-            <p class="question" style="margin-top:14px;">Did meds help?</p>
-            <div class="radio-group small">
-              <label><input type="radio" name="meds" value="no_come_back"> Yes, pain did not come back</label>
-              <label><input type="radio" name="meds" value="few_hours"> Yes, effective for a few hours</label>
-              <label><input type="radio" name="meds" value="no_effect"> No, no effect</label>
-            </div>
-          </div>
+        <input type="checkbox" id="stabbing" name="pain_type" value="stabbing">
+        <label for="stabbing">Stabbing</label><br>
 
-          <div class="alt-box">
-            <h2 class="section-title">Alternative Treatment</h2>
-            <div class="check-group">
-              <label><input type="checkbox"> Heat pack</label>
-              <label><input type="checkbox"> Rub on</label>
-              <label><input type="checkbox"> Other</label>
-            </div>
-          </div>
+        <input type="checkbox" id="burning" name="pain_type" value="burning">
+        <label for="burning">Burning</label><br>
 
-        </section>
+        <input type="checkbox" id="pressure" name="pain_type" value="pressure">
+        <label for="pressure">Pressure</label><br>
 
-        <!-- School Section -->
-        <section class="section school-section">
-          <h2 class="section-title">School</h2>
-          <p class="question">Did you miss school due to menstrual pain?</p>
-          <div class="yes-no">
-            <button class="yn-btn">Yes</button>
-            <button class="yn-btn active">No</button>
-          </div>
-          <p class="question" style="margin-top:12px;">Days of school missed: <input type="text" class="inline-input wide" placeholder="0"></p>
-        </section>
+        <input type="checkbox" id="ache" name="pain_type" value="ache">
+        <label for="ache">Dull ache</label><br>
 
-      </main>
+        <h4>Where was the pain located?</h4>
 
-      <!-- Right Sidebar: Summary + PDF -->
-      <aside class="summary-panel">
-        <h2 class="summary-title">Summary</h2>
-        <div class="summary-body">
-          <div class="summary-row"><span class="summary-key">Pain level</span><span class="summary-val">—</span></div>
-          <div class="summary-row"><span class="summary-key">Pain type</span><span class="summary-val">—</span></div>
-          <div class="summary-row"><span class="summary-key">Location</span><span class="summary-val">Lower pelvis</span></div>
-          <div class="summary-row"><span class="summary-key">Timing</span><span class="summary-val">—</span></div>
-          <div class="summary-row"><span class="summary-key">Medication</span><span class="summary-val">Yes</span></div>
-          <div class="summary-row"><span class="summary-key">Mood</span><span class="summary-val">😊</span></div>
-          <div class="summary-row"><span class="summary-key">School missed</span><span class="summary-val">No</span></div>
-        </div>
-        <button class="pdf-btn">⬇ Export PDF</button>
-      </aside>
+        <input type="checkbox" id="lower_abdomen" name="pain_region" value="lower_abdomen">
+        <label for="lower_abdomen">Lower abdomen</label><br>
 
-    </div>
-  </div>
+        <input type="checkbox" id="left_side" name="pain_region" value="left_side">
+        <label for="left_side">Left side</label><br>
 
-</body>
+        <input type="checkbox" id="right_side" name="pain_region" value="right_side">
+        <label for="right_side">Right side</label><br>
+
+        <input type="checkbox" id="lower_back" name="pain_region" value="lower_back">
+        <label for="lower_back">Lower back</label><br>
+
+        <input type="checkbox" id="legs" name="pain_region" value="legs">
+        <label for="legs">Pain radiated to legs</label>
+
+    </fieldset>
+
+    <hr>
+
+    <!-- school lifestyle -->
+    <fieldset>
+        <legend>School & Daily Life</legend>
+
+        <label for="missed_school">
+            Days of school missed this month:
+        </label>
+        <input type="number" id="missed_school" min="0">
+
+        <br><br>
+
+        <label for="nurse_visits">
+            Number of school nurse visits:
+        </label>
+        <input type="number" id="nurse_visits" min="0">
+
+        <br><br>
+
+        <input type="checkbox" id="sent_home">
+        <label for="sent_home">
+            Sent home due to symptoms
+        </label>
+
+        <br>
+
+        <input type="checkbox" id="sports">
+        <label for="sports">
+            Unable to participate in sports or physical activity
+        </label>
+
+        <br>
+
+        <input type="checkbox" id="sleep">
+        <label for="sleep">
+            Symptoms disrupted sleep
+        </label>
+
+        <br>
+
+        <input type="checkbox" id="focus">
+        <label for="focus">
+            Difficulty concentrating in class
+        </label>
+
+    </fieldset>
+
+    <hr>
+
+    <!-- meds -->
+    <fieldset>
+        <legend>Treatment & Pain Relief</legend>
+
+        <h4>What did you try?</h4>
+
+        <input type="checkbox" id="heat_pack">
+        <label for="heat_pack">Heat pack</label><br>
+
+        <input type="checkbox" id="rest">
+        <label for="rest">Rest</label><br>
+
+        <input type="checkbox" id="stretching">
+        <label for="stretching">Stretching</label><br>
+
+        <input type="checkbox" id="medication">
+        <label for="medication">Medication</label><br>
+
+        <input type="checkbox" id="patch">
+        <label for="patch">Patch / Roll-on product</label>
+
+        <h4>How much relief did you get?</h4>
+
+        <input type="radio" id="relief1" name="relief" value="none">
+        <label for="relief1">No relief</label><br>
+
+        <input type="radio" id="relief2" name="relief" value="small">
+        <label for="relief2">Some relief</label><br>
+
+        <input type="radio" id="relief3" name="relief" value="moderate">
+        <label for="relief3">Moderate relief</label><br>
+
+        <input type="radio" id="relief4" name="relief" value="significant">
+        <label for="relief4">Significant relief</label>
+
+    </fieldset>
+
+    <hr>
+
+    <!-- period details flow and stuff -->
+    <fieldset>
+        <legend>Period Details</legend>
+
+        <h4>Flow</h4>
+
+        <input type="radio" id="flow1" name="flow" value="light">
+        <label for="flow1">Light</label><br>
+
+        <input type="radio" id="flow2" name="flow" value="moderate">
+        <label for="flow2">Moderate</label><br>
+
+        <input type="radio" id="flow3" name="flow" value="heavy">
+        <label for="flow3">Heavy</label><br>
+
+        <input type="radio" id="flow4" name="flow" value="very_heavy">
+        <label for="flow4">Very heavy</label>
+
+        <h4>Additional observations</h4>
+
+        <input type="checkbox" id="spotting">
+        <label for="spotting">Spotting between periods</label><br>
+
+        <input type="checkbox" id="clots">
+        <label for="clots">Blood clots noticed</label><br>
+
+        <input type="checkbox" id="long_period">
+        <label for="long_period">Period lasted longer than usual</label>
+
+    </fieldset>
+
+    <hr>
+
+    <!-- emotions -->
+    <fieldset>
+        <legend>Emotional Impact</legend>
+
+        <input type="checkbox" id="anxious">
+        <label for="anxious">Anxious</label><br>
+
+        <input type="checkbox" id="frustrated">
+        <label for="frustrated">Frustrated</label><br>
+
+        <input type="checkbox" id="embarrassed">
+        <label for="embarrassed">Embarrassed</label><br>
+
+        <input type="checkbox" id="overwhelmed">
+        <label for="overwhelmed">Overwhelmed</label><br>
+
+        <input type="checkbox" id="dismissed">
+        <label for="dismissed">Felt dismissed or not understood</label>
+
+    </fieldset>
+
+    <br>
+
+    <label for="notes">Additional notes (optional)</label><br>
+    <textarea id="notes" rows="5" cols="50"></textarea>
+
+    <br><br>
+
+    <button type="submit">Generate Monthly Summary</button>
+
+</form>
+
+    </body>
 </html>
