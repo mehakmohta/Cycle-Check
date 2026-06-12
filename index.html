@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symptom Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Left Navigation -->
+  <nav class="sidebar-nav">
+    <p class="nav-label">Navigation</p>
+    <ul>
+      <li><a href="#" class="active">Symptoms</a></li>
+      <li><a href="#">Calendar</a></li>
+      <li><a href="#">Appointment Prep</a></li>
+    </ul>
+    <div class="nav-flower">✿</div>
+  </nav>
+
+  <!-- Page wrapper -->
+  <div class="page">
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="welcome-box">
+        <h1>Welcome, <em>Name</em></h1>
+      </div>
+      <div class="logo-box">
+        <span class="logo-icon">🌸</span>
+        <span class="logo-text">CycleLog</span>
+      </div>
+    </header>
+
+    <!-- Main + Right Sidebar -->
+    <div class="body-row">
+
+      <!-- Main Content Panel -->
+      <main class="content-panel">
+
+        <!-- Pain & Body Map -->
+        <section class="section pain-section">
+          <div class="pain-left">
+            <h2 class="section-title">How much pain were you in?</h2>
+            <div class="radio-group">
+              <label><input type="radio" name="pain" value="none"> No pain</label>
+              <label><input type="radio" name="pain" value="mild"> Mild discomfort</label>
+              <label><input type="radio" name="pain" value="moderate"> Moderate pain</label>
+              <label><input type="radio" name="pain" value="severe"> Debilitating (could not walk)</label>
+            </div>
+
+            <h3 class="sub-title">What kind of pain was it?</h3>
+            <div class="tag-group">
+              <button class="tag">Radiating</button>
+              <button class="tag">Sharp</button>
+              <button class="tag">Dull</button>
+            </div>
+
+            <h3 class="sub-title">When?</h3>
+            <div class="tag-group">
+              <button class="tag">During period</button>
+              <button class="tag">Before period</button>
+              <button class="tag">After period</button>
+              <button class="tag">Other time</button>
+            </div>
+          </div>
+
+          <div class="pain-right">
+            <h2 class="section-title">Where was the pain? <span class="hint">(click)</span></h2>
+            <div class="body-map">
+              <svg viewBox="0 0 80 160" xmlns="http://www.w3.org/2000/svg" class="body-svg">
+                <!-- Head -->
+                <ellipse cx="40" cy="18" rx="12" ry="14" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
+                <!-- Torso -->
+                <rect x="24" y="33" width="32" height="48" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
+                <!-- Pelvis highlight -->
+                <rect x="24" y="68" width="32" height="13" rx="4" fill="#e8709a" opacity="0.4"/>
+                <!-- Left arm -->
+                <rect x="10" y="34" width="12" height="38" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
+                <!-- Right arm -->
+                <rect x="58" y="34" width="12" height="38" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
+                <!-- Left leg -->
+                <rect x="24" y="83" width="14" height="60" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
+                <!-- Right leg -->
+                <rect x="42" y="83" width="14" height="60" rx="6" fill="#f9c8d9" stroke="#c0477a" stroke-width="1.5"/>
+              </svg>
+              <div class="body-map-options">
+                <label><input type="checkbox" name="loc" value="back"> Back</label>
+                <label><input type="checkbox" name="loc" value="legs"> Legs</label>
+                <label><input type="checkbox" name="loc" value="pelvis" checked> Lower pelvis</label>
+                <label class="specify-row"><input type="checkbox" name="loc" value="other"> Elsewhere / specify <input type="text" class="inline-input" placeholder="…"></label>
+              </div>
+            </div>
+          </div>
+
+          <!-- How do you feel -->
+          <div class="feel-box">
+            <h2 class="section-title small">How do you feel?</h2>
+            <div class="emoji-grid">
+              <button class="emoji-btn active" title="Great">😊</button>
+              <button class="emoji-btn" title="Okay">😐</button>
+              <button class="emoji-btn" title="Tired">😔</button>
+              <button class="emoji-btn" title="Anxious">😟</button>
+              <button class="emoji-btn" title="Nauseous">🤢</button>
+              <button class="emoji-btn" title="Angry">😠</button>
+              <button class="emoji-btn" title="Sad">😢</button>
+              <button class="emoji-btn" title="Exhausted">😩</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Medication + Alternative Treatment -->
+        <section class="section two-col-section">
+
+          <div class="medication-box">
+            <h2 class="section-title">Medication</h2>
+            <p class="question">Did you use any medication?</p>
+            <div class="yes-no">
+              <button class="yn-btn active">Yes</button>
+              <button class="yn-btn">No</button>
+            </div>
+            <input type="text" class="text-input" placeholder="Name of medication">
+            <input type="text" class="text-input" placeholder="Dosage details (optional)">
+
+            <p class="question" style="margin-top:14px;">Did meds help?</p>
+            <div class="radio-group small">
+              <label><input type="radio" name="meds" value="no_come_back"> Yes, pain did not come back</label>
+              <label><input type="radio" name="meds" value="few_hours"> Yes, effective for a few hours</label>
+              <label><input type="radio" name="meds" value="no_effect"> No, no effect</label>
+            </div>
+          </div>
+
+          <div class="alt-box">
+            <h2 class="section-title">Alternative Treatment</h2>
+            <div class="check-group">
+              <label><input type="checkbox"> Heat pack</label>
+              <label><input type="checkbox"> Rub on</label>
+              <label><input type="checkbox"> Other</label>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- School Section -->
+        <section class="section school-section">
+          <h2 class="section-title">School</h2>
+          <p class="question">Did you miss school due to menstrual pain?</p>
+          <div class="yes-no">
+            <button class="yn-btn">Yes</button>
+            <button class="yn-btn active">No</button>
+          </div>
+          <p class="question" style="margin-top:12px;">Days of school missed: <input type="text" class="inline-input wide" placeholder="0"></p>
+        </section>
+
+      </main>
+
+      <!-- Right Sidebar: Summary + PDF -->
+      <aside class="summary-panel">
+        <h2 class="summary-title">Summary</h2>
+        <div class="summary-body">
+          <div class="summary-row"><span class="summary-key">Pain level</span><span class="summary-val">—</span></div>
+          <div class="summary-row"><span class="summary-key">Pain type</span><span class="summary-val">—</span></div>
+          <div class="summary-row"><span class="summary-key">Location</span><span class="summary-val">Lower pelvis</span></div>
+          <div class="summary-row"><span class="summary-key">Timing</span><span class="summary-val">—</span></div>
+          <div class="summary-row"><span class="summary-key">Medication</span><span class="summary-val">Yes</span></div>
+          <div class="summary-row"><span class="summary-key">Mood</span><span class="summary-val">😊</span></div>
+          <div class="summary-row"><span class="summary-key">School missed</span><span class="summary-val">No</span></div>
+        </div>
+        <button class="pdf-btn">⬇ Export PDF</button>
+      </aside>
+
+    </div>
+  </div>
+
+</body>
+</html>
